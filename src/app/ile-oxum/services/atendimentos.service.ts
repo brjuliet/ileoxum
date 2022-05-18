@@ -36,15 +36,48 @@ export class AtendimentosService {
 
 
   postGira(body: any){
-    return this.http.post<any>(this.URL + `giras`, body).pipe(take(1));
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+    });
+
+    let httpOptions = {
+      headers: headers
+    };
+
+    return this.http.post<any>(this.URL + `giras`, body, httpOptions).pipe(take(1));
   }
 
   getAtendimentos(){
-    return this.http.get<any>(this.URL + `giras`);
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+    });
+
+    let httpOptions = {
+      headers: headers
+    };
+
+    return this.http.get<any>(this.URL + `giras`, httpOptions);
   }
 
   remove(id: number){
-    return this.http.delete(`${this.URL}giras/${id}`).pipe(take(1));;
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+    });
+
+    let httpOptions = {
+      headers: headers
+    };
+
+    return this.http.delete(`${this.URL}giras/${id}`, httpOptions).pipe(take(1));;
   }
 
 }
