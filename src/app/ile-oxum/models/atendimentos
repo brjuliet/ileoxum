@@ -1,0 +1,7 @@
+export interface Atendimentos {
+  id: number;
+  nome_pessoa: string;
+  nome_guia:string;
+  status: boolean;
+  gira: number;
+}

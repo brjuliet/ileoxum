@@ -1,0 +1,91 @@
+<nav class="navbar navbar-light bg-light text-center">
+  <a class="navbar-brand" href="#">
+    <img src="assets/logo.png" width="50" alt=""> ILÊ DE OXUM
+  </a>
+</nav>
+
+<div class="container">
+  <div class="card mt-3 mb-3">
+    <div class="card-header">
+      Controle de planilha
+    </div>
+    <div class="card-body">
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="nomeCompleto">Nome Completo</label>
+              <input type="text" class="form-control" id="nomeCompleto" formControlName="nomeCompleto"
+                placeholder="nome completo">
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2" *ngFor="let x of atendimentos">
+          <div class="col-md-6">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="guias" formControlName="guias" id="{{x.id}}"
+                value="{{x.id}}">
+              <label class="form-check-label" for="{{x.nome_guia}}">
+                {{x.nome_guia}} - {{x.nome_pessoa}}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2" *ngIf="msgSucesso">
+          <div class="col-12">
+            <div class="alert alert-success" role="alert">
+              Salvo com sucesso!
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2" *ngIf="msgErro">
+          <div class="col-12">
+            <div class="alert alert-danger" role="alert">
+              Erro! tente novamente
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary">AGENDAR</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="text-center" >GUIA</th>
+            <th scope="col" class="text-center" >CAVALO</th>
+            <th scope="col" class="text-center" >PESSOA</th>
+            <th scope="col" class="text-center" >SENHA</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let agendamento of agendamentos; let i = index ">
+            <th scope="row">{{i+1}}</th>
+            <td>{{agendamento.nome_guia}}</td>
+            <td>{{agendamento.nome_pessoa}}</td>
+            <td>{{agendamento.nome_paciente}}</td>
+            <td> </td>
+            <td><button type="button" class="btn btn-outline-primary" (click)="onDelete(agendamento.id)">excluir</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-12 text-right p-3">
+      <button type="button" class="btn btn-info">IMPRIMIR</button>
+    </div>
+  </div>
+</div>
