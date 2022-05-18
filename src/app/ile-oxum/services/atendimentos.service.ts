@@ -47,7 +47,7 @@ export class AtendimentosService {
       headers: headers
     };
 
-    return this.http.post<any>(this.URL + `giras`, body).pipe(take(1));
+    return this.http.post<any>(this.URL + `giras`, body, httpOptions).pipe(take(1));
   }
 
   getAtendimentos(){
